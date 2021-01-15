@@ -22,15 +22,19 @@ web rest api to take over doctors backend
 ## Init
 
 ### 1.Repository
-`mkdir med-api`
-`cd med-api/`
-`git init`
-`git remote add origin https://github.com/MasterTechHn/med-api.git`
-`git pull origin main`
+```
+mkdir med-api
+cd med-api/
+git init
+git remote add origin https://github.com/MasterTechHn/med-api.git
+git pull origin main
+```
 
 ### 2.Bundle Install
 should check your node version with `node -v`
-`npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local --save`
+```
+npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local --save
+```
 
 ### 3.Environment variables
 * should be in the root directory and create a new file 
