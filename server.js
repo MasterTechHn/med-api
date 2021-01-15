@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const { serverConfig, dbConfig } = require('./auth/config');
 const dbConnection = require('./auth/dbconnection');
 const doctorRoute = require('./routes/doctor.route');
+const postulantRoute = require('./routes/postulant.route');
 
 const server = express()
 require('./auth/local-auth');
@@ -15,6 +16,8 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 server.use('/v0.1/medapi/doctor', doctorRoute);
+server.use('/v0.1/medapi/apply', postulantRoute);
+
 
 function initApp (serverConfig, dbConfig) {
     
