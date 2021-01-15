@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 mongoose.connection.on('open', () => console.log('DataBase is now connected..'));
 
-function dbConnection ({port, host, db}) {
-  const uri = `mongodb://${host}:${port}/${db}`;
+function dbConnection ({port, host, db,user,password}) {
+  const uri = `mongodb+srv://${user}:${password}${host}${db}?retryWrites=true&w=majority`;
   const connection = mongoose.connect(uri, {useNewUrlParser: true})
   .then( (data) => {},
      err => {
