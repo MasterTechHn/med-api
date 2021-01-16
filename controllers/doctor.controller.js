@@ -4,21 +4,28 @@ const Doctor = require('../models/doctor.model');
 function getDoctors (req, res) {
   try {
     const doctors = Doctor.find()
+    .select('name email phone password ._id')
     .then((data) => {
         console.log('a doctors collection has been dispatch..');
         return res.status(200).send({ 
-          success: true, data
+          success: true, 
+          count: data.length,
+          doctors: data
         });
       })
     .catch(err => {
         console.log(err);
         return res.status(500).send({ 
           message: err.message, 
-          success: false
+          success: false,
+          request: {
+            type: 'POST',
+            catch: 'findDoctor'
+          }
         });
       });
   } catch (err) {
-    console.log('something goes wrong on getDoctorsRequest** \n' + err);
+    console.log('something goes wrong on getDoctorsRequest** \n');
   };
 };
 
@@ -69,7 +76,19 @@ function newDoctor (req, res) {
           .then((data) => {
             console.log('new record on doctor collection..');
             return res.status(200).send({ 
-              success: true, data
+              success: true,
+              createdDoctor: {
+                id: data._id,
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                password: data.password,
+                speciality: data.speciality,
+                experience: data.experience,
+                country: data.address.country,
+                city: data.address.city,
+                street: data.address.street
+              } 
             });
           })
           .catch(err => {
@@ -79,7 +98,7 @@ function newDoctor (req, res) {
             });
           });
         }, err => {
-          console.log('something goes wrong on saveDoctorFunction** \n' + err);
+          console.log('something goes wrong on saveDoctorFunction** \n');
         });
       });
     })
@@ -91,7 +110,7 @@ function newDoctor (req, res) {
       });
     });
   } catch (err) {
-    console.log('catch on newDoctorRequest** \n ' + err);
+    console.log('catch on newDoctorRequest** \n ');
   }
 };
 
