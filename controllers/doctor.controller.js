@@ -19,7 +19,7 @@ function getDoctors (req, res) {
           message: err.message, 
           success: false,
           request: {
-            type: 'POST',
+            type: 'GET',
             catch: 'findDoctor'
           }
         });
@@ -106,7 +106,11 @@ function newDoctor (req, res) {
       console.log(err);
       return status(500).send({
         succes: false,
-        message: err.message
+        message: err.message,
+        request: {
+          type: 'POST',
+          catch: 'doctorSavve'
+        }
       });
     });
   } catch (err) {

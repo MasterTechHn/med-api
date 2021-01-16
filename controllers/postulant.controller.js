@@ -11,9 +11,18 @@ function getPostulant (req, res) {
         postulants: data
       });
     })
-    .cath();
-  } catch (error) {
-    
+    .cath(err => {
+      return res.status(500).send({
+        success: false, 
+        message: err.message,
+        request: {
+          type: 'GET',
+          catch: 'postulantFind'
+        }
+      });
+    });
+  } catch (err) {
+    console.log('something goes wrong on getPostulantRequest** \n');
   }
 }
 

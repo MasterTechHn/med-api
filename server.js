@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 // const cors = require('cors');
+const morgan = require('morgan');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const { serverConfig, dbConfig } = require('./auth/config');
@@ -11,6 +12,7 @@ const postulantRoute = require('./routes/postulant.route');
 const server = express()
 require('./auth/local-auth');
 
+server.use(morgan('dev'));
 server.use(passport.initialize());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
@@ -18,6 +20,21 @@ server.use(bodyParser.json());
 server.use('/v0.1/medapi/doctor', doctorRoute);
 server.use('/v0.1/medapi/apply', postulantRoute);
 
+server.use((req, res, done) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  return done(err);
+});
+
+server.use((err, req, res, done) => {
+  return res.status(err.status || 500)
+    .send({
+      success: false,
+      error: {
+        message: err.message
+      }
+    });
+});
 
 function initApp (serverConfig, dbConfig) {
     

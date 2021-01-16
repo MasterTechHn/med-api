@@ -8,11 +8,11 @@ web rest api to take over doctors backend
 ## Stack
 |  | Development | Production |
 |----------|------------ |------------ |
-| Windows              | ✔ |  |
-| MacOS                | ✔ |  |
-| Node JS              | ✔ |  |
-| Mongo DB Cluster     | ✔ |  |
-| AWS                  | ✔ |  |
+| Windows               |  ✔  |   |
+| MacOS                 |  ✔  |   |
+| Node JS               |  ✔  |   |
+| Mongo DB Cluster      |  ✔  |   |
+| AWS                   |  ✔  |   |
 
 ## Environment dependencies
 * require node js
@@ -33,7 +33,7 @@ git pull origin main
 ### 2.Bundle Install
 should check your node version with `node -v`
 ```
-npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local --save
+npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local morgan --save
 ```
 
 ### 3.Environment variables
