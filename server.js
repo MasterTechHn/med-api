@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
 const bodyParser = require('body-parser');
@@ -12,6 +12,21 @@ const postulantRoute = require('./routes/postulant.route');
 const server = express()
 require('./auth/local-auth');
 
+/* HANDLE A WHITELIST OF DOMAINS
+  THE NEXT BLOCK NEEDS TO IMPROVE
+*/
+// const whitelist = ['*', 'ttp://localhost:'];
+// const corsOptions = {
+//   origin: (origin, done) => {
+//     if(whitelist.indexOf(origin) !== -1){
+//       done(null, true);
+//     }else {
+//       done(new Error('Not Allowed by CORs'));
+//     }
+//   }
+// };
+
+server.use(cors());
 server.use(morgan('dev'));
 server.use(passport.initialize());
 server.use(bodyParser.urlencoded({ extended: false }));
