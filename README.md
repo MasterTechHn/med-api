@@ -33,7 +33,7 @@ git pull origin main
 ### 2.Bundle Install
 should check your node version with `node -v`
 ```
-npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local morgan --save
+npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local morgan cors --save
 ```
 
 ### 3.Environment variables

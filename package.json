@@ -1,6 +1,6 @@
 {
   "name": "med-api",
-  "version": "0.0.6",
+  "version": "0.1.5",
   "description": "web rest api to take over doctors backend",
   "main": "server.js",
   "scripts": {
