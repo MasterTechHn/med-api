@@ -3,6 +3,7 @@ const Postulant = require('../models/postulant.model');
 function getPostulant (req, res) {
   try {
     const postulant = Postulant.find()
+    .select('-__v')
     .then(data => {
       console.log('a doctors collection has been dispatch..');
       return res.status(201).send({
