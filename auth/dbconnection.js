@@ -4,7 +4,7 @@ mongoose.connection.on('open', () => console.log('DataBase is now connected..'))
 
 function dbConnection ({port, host, db,user,password}) {
   const uri = `mongodb+srv://${user}:${password}${host}${db}?retryWrites=true&w=majority`;
-  const connection = mongoose.connect(uri, {useNewUrlParser: true})
+  const connection = mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then( (data) => {},
      err => {
       console.log(err);
