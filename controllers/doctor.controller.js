@@ -4,13 +4,13 @@ const Doctor = require('../models/doctor.model');
 function getDoctors (req, res) {
   try {
     const doctors = Doctor.find()
-    .select('name email phone password ._id')
+    .select('-createdAt -updatedAt -__v')
     .then((data) => {
         console.log('a doctors collection has been dispatch..');
         return res.status(200).send({ 
           success: true, 
           count: data.length,
-          doctors: data
+          data: data
         });
       })
     .catch(err => {

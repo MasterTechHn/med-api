@@ -9,7 +9,7 @@ function getPostulant (req, res) {
       return res.status(201).send({
         success: true,
         count: data.length,
-        postulants: data
+        data: data
       });
     })
     .cath(err => {
