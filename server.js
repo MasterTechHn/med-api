@@ -35,6 +35,10 @@ server.use(bodyParser.json());
 server.use('/v0.1/medapi/doctor', doctorRoute);
 server.use('/v0.1/medapi/apply', postulantRoute);
 
+server.get("/", (req, res) => {
+  res.json({ message: "Welcome to med api." });
+});
+
 server.use((req, res, done) => {
   const err = new Error('Not Found');
   err.status = 404;
@@ -50,6 +54,8 @@ server.use((err, req, res, done) => {
       }
     });
 });
+
+
 
 function initApp (serverConfig, dbConfig) {
     
