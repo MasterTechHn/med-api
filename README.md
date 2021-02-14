@@ -35,7 +35,7 @@ should check your node version with `node -v`
 ```
 npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local morgan cors --save
 
-npm install --save-dev nodemon jest
+npm install --save-dev nodemon jest supertest
 ```
 
 ### 3.Environment variables
