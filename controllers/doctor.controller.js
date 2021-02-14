@@ -1,35 +1,30 @@
 const bcrypt = require('bcrypt');
 const Doctor = require('../models/doctor.model');
 
-function getDoctors (req, res) {
+async function getDoctors(req, res) {
   try {
-    const doctors = Doctor.find()
+    const doctors = await Doctor.find()
     .select('-createdAt -updatedAt -__v')
-    .then((data) => {
-        console.log('a doctors collection has been dispatch..');
-        return res.status(200).send({ 
-          success: true, 
-          count: data.length,
-          data: data
-        });
-      })
-    .catch(err => {
-        console.log(err);
-        return res.status(500).send({ 
-          message: err.message, 
-          success: false,
-          request: {
-            type: 'GET',
-            catch: 'findDoctor'
-          }
-        });
-      });
+    console.log('a doctors collection has been dispatch..');
+    return res.status(200).send({ 
+      success: true, 
+      count: data.length,
+      data: doctors
+    });
   } catch (err) {
     console.log('something goes wrong on getDoctorsRequest** \n');
-  };
-};
+    return res.status(500).send({ 
+      message: err.message, 
+      success: false,
+      request: {
+        type: 'GET',
+        catch: 'findDoctor'
+      }
+    });
+  }
+}
 
-function newDoctor (req, res) {
+async function newDoctor (req, res) {
   try {
     const {
       name,
@@ -59,62 +54,34 @@ function newDoctor (req, res) {
       experience,
     });
 
-    const found = Doctor.findOne({email: email})
-    .then(found => {
-      if(found){
-        return res.status(201).send({
-          success: false,
-          message: 'this email is already taken by an account.'
-        });
-      };
+    const doctorExist = await Doctor.findOne({email: email});
 
-      bcrypt.genSalt(5, (err, salt) => {
-        bcrypt.hash(password, salt, (err, hash) => {
-          console.log(hash);
-          doctor.password = hash;        
-          const saveDoctor = doctor.save()
-          .then((data) => {
-            console.log('new record on doctor collection..');
-            return res.status(200).send({ 
-              success: true,
-              createdDoctor: {
-                id: data._id,
-                name: data.name,
-                email: data.email,
-                phone: data.phone,
-                password: data.password,
-                speciality: data.speciality,
-                experience: data.experience,
-                country: data.address.country,
-                city: data.address.city,
-                street: data.address.street
-              } 
-            });
-          })
-          .catch(err => {
-            console.log(err);
-            return res.status(500).send({ 
-              success: false, message: err.message
-            });
-          });
-        }, err => {
-          console.log('something goes wrong on saveDoctorFunction** \n');
-        });
+    if(doctorExist){
+      return res.status(201).send({
+        success: false,
+        message: 'this email is already taken by an account.'
       });
-    })
-    .catch(err => {
-      console.log(err);
-      return status(500).send({
-        succes: false,
-        message: err.message,
-        request: {
-          type: 'POST',
-          catch: 'doctorSavve'
-        }
-      });
+    }
+
+    await doctor.bcryptPassword(password);
+
+    const doctorStored = await doctor.save()
+    
+    return res.status(200).send({ 
+      success: true,
+      count: 1,
+      data: doctorStored
     });
   } catch (err) {
-    console.log('catch on newDoctorRequest** \n ');
+    console.log('something goes wrong on saveDoctorFunction** \n');
+    return status(500).send({
+      succes: false,
+      message: err.message,
+      request: {
+        type: 'POST',
+        catch: 'doctorSavve'
+      }
+    });
   }
 };
 

@@ -29,19 +29,20 @@ auth.use(new localStartegy({
             });
         }
 
-        bcrypt.compare(password, doctor.password, (err, match) => {
+        doctor.comparePassword(password)
+          .then((err, match) => {
             if(err){
-               return done(err);
+              return done(err);
             }
 
             if(!match){
-                return done(null, false, {
-                    message: 'Incorrect Password.'
-                });
+              return done(null, false, {
+                message: 'Incorrect Password.'
+              });
             }
 
             return done(null, doctor);
-        });
-
+          }
+        );
     });
 }));
