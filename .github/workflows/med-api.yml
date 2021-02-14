@@ -20,13 +20,13 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     env:
-      APP_HOST: ${{secret.APP_HOST}} 
-      APP_PORT: ${{secret.APP_PORT}}
-      DB_HOST:  ${{secret.DB_HOST}}
-      DB_NAME:  ${{secret.DB_NAME}}
-      DB_PORT:  ${{secret.DB_PORT}}
-      DB_USER:  ${{secret.DB_USER}} 
-      DB_PASSWORD:  ${{secret.DB_PASSWORD}}
+      APP_HOST: ${{secrets.APP_HOST}} 
+      APP_PORT: ${{secrets.APP_PORT}}
+      DB_HOST:  ${{secrets.DB_HOST}}
+      DB_NAME:  ${{secrets.DB_NAME}}
+      DB_PORT:  ${{secrets.DB_PORT}}
+      DB_USER:  ${{secrets.DB_USER}} 
+      DB_PASSWORD:  ${{secrets.DB_PASSWORD}}
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
