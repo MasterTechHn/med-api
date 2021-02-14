@@ -34,6 +34,8 @@ git pull origin main
 should check your node version with `node -v`
 ```
 npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local morgan cors --save
+
+npm install --save-dev nodemon jest
 ```
 
 ### 3.Environment variables
