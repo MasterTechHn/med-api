@@ -4,7 +4,7 @@ const config = {
         host: process.env.APP_HOST
     },
     dbConfig: {
-        db: process.env.DB_NAME,
+        db: (process.env.NODE_ENV === "test") ? `${process.env.DB_NAME}-test` : process.env.DB_NAME, 
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         user: process.env.DB_USER,
