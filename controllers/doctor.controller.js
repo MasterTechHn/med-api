@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const Doctor = require('../models/doctor.model');
 
 async function getDoctors(req, res) {
@@ -66,7 +65,7 @@ async function newDoctor (req, res) {
     await doctor.bcryptPassword(password);
 
     const doctorStored = await doctor.save()
-    
+    console.log('new record on doctors collection..');
     return res.status(200).send({ 
       success: true,
       count: 1,

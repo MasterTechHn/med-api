@@ -1,33 +1,29 @@
 const Postulant = require('../models/postulant.model');
 
-function getPostulant (req, res) {
+async function getPostulant (req, res) {
   try {
-    const postulant = Postulant.find()
-    .select('-__v')
-    .then(data => {
-      console.log('a doctors collection has been dispatch..');
-      return res.status(201).send({
-        success: true,
-        count: data.length,
-        data: data
-      });
-    })
-    .cath(err => {
-      return res.status(500).send({
-        success: false, 
-        message: err.message,
-        request: {
-          type: 'GET',
-          catch: 'postulantFind'
-        }
-      });
+    const postulant = await Postulant.find()
+    .select('-createdAt -updatedAt -__v')
+    console.log('a postulant collection has been dispatch..');
+    return res.status(200).send({
+      success: true,
+      count: postulant.length,
+      data: postulant
     });
   } catch (err) {
     console.log('something goes wrong on getPostulantRequest** \n');
+    return res.status(500).send({
+      success: false, 
+      message: err.message,
+      request: {
+        type: 'GET',
+        catch: 'postulantFind'
+      }
+    });
   }
 }
 
-function newPostulant (req, res) {
+async function newPostulant (req, res) {
   try {
     const {
       name,
@@ -55,32 +51,23 @@ function newPostulant (req, res) {
       }
     });    
     
-    const postulantSave = postulant.save()
-    .then(data => {
-      console.log('new record on postulant collection..');
-      return res.status(200).send({ 
-        success: true,
-        createdPostulant: {
-          _id: data._id,
-          name: data.name,
-          lastname: data.lastname,
-          email: data.email
-        }
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      return res.status(500).send({ 
-        success: false, 
-        message: err.message,
-        request: {
-          type: 'POST',
-          catch: 'postulantSave'
-        }
-      });
+    const postulantSaved = await postulant.save();
+    console.log('new record on postulants collection..');
+    return res.status(200).send({
+      success: true,
+      count: 1,
+      data: postulantSaved
     });
   } catch (err) {
     console.log('catch on newPostulantRequest** \n ');
+    return res.status(500).send({ 
+      success: false, 
+      message: err.message,
+      request: {
+        type: 'POST',
+        catch: 'postulantSave'
+      }
+    });
   }
 }
 
