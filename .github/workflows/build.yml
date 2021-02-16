@@ -48,4 +48,4 @@ jobs:
           DB_USER: ${{ env.DB_USER }}
           DB_PASSWORD: ${{ env.DB_PASSWORD }}
         run: |
-          docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .
+          docker build -t "mastertechhn/med-api:$IMAGE_TAG" .
