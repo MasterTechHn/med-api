@@ -2,7 +2,7 @@ name: Med-Api CD
 
 on:
   release:
-    types: [created]
+    types: [created, edited]
     
 env:
   AWS_REGION: us-east-2
