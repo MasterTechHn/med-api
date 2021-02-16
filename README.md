@@ -1,3 +1,7 @@
+
+![Med-Api CI](https://github.com/MasterTechHn/med-api/workflows/Med-Api%20CI/badge.svg)
+![Med-Api CD](https://github.com/MasterTechHn/med-api/workflows/Med-Api%20CD/badge.svg)
+
 # med-api
 web rest api to take over doctors backend
 
