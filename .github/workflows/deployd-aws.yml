@@ -5,11 +5,11 @@ on:
     types: [created]
     
 env:
-  AWS_REGION: us-east2
+  AWS_REGION: us-east-2
   ECR_REPOSITORY: med-api
   ECS_SERVICE: backend-service
   ECS_CLUSTER: med-api
-  ECS_TASK_DEFINITION: ecs-task-definition.json
+  ECS_TASK_DEFINITION: .aws/ecs-task-definition.json
   CONTAINER_NAME: med-apiContainer 
 
 jobs:
