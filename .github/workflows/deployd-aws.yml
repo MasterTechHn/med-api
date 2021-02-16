@@ -1,8 +1,8 @@
 name: Med-Api CD
 
 on:
-  release:
-    types: [created, edited]
+  push:
+    branches: [ main ]
     
 env:
   AWS_REGION: us-east-2
