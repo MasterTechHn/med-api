@@ -31,10 +31,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and test
-    - run: | 
-        npm ci
-        npm test
+    - run: npm ci
+    - run: npm test
       env: 
         CI: true
 
@@ -56,5 +54,4 @@ jobs:
           DB_PORT:  ${{ env.DB_PORT }}
           DB_USER:  ${{ env.DB_USER }} 
           DB_PASSWORD:  ${{ secrets.DB_PASSWORD }}
-        run: |
-          docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .
+      - run: docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .
