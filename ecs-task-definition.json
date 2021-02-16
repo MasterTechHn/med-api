@@ -25,36 +25,7 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [
-        {
-          "name": "APP_HOST",
-          "value": "http://localhost"
-        },
-        {
-          "name": "APP_PORT",
-          "value": "8080"
-        },
-        {
-          "name": "DB_HOST",
-          "value": "@cluster0.s6wwo.mongodb.net/"
-        },
-        {
-          "name": "DB_NAME",
-          "value": "medcare"
-        },
-        {
-          "name": "DB_PASSWORD",
-          "value": "Abc123"
-        },
-        {
-          "name": "DB_PORT",
-          "value": "27017"
-        },
-        {
-          "name": "DB_USER",
-          "value": "testadmin"
-        }
-      ],
+      "environment": [],
       "resourceRequirements": null,
       "ulimits": null,
       "dnsServers": null,
