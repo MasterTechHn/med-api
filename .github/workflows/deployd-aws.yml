@@ -38,21 +38,11 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
         IMAGE_TAG: ${{ github.sha }}
-        APP_HOST: ${{ secrets.APP_HOST }} 
-        APP_PORT: ${{ secrets.APP_PORT }}
-        DB_HOST:  ${{ secrets.DB_HOST }}
-        DB_NAME:  ${{ secrets.DB_NAME }}
-        DB_PORT:  ${{ secrets.DB_PORT }}
-        DB_USER:  ${{ secrets.DB_USER }} 
-        DB_PASSWORD:  ${{ secrets.DB_PASSWORD }} 
       run: |
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg APP_HOST_ARG="$APP_HOST"
-            --build-arg APP_PORT_ARG="$APP_PORT" --build-arg DB_HOST_ARG="$DB_HOST" 
-            --build-arg DB_PORT_ARG="$DB_PORT" --build-arg DB_NAME_ARG="$DB_NAME" 
-            --build-arg DB_USER_ARG="$DB_USER"  --build-arg DB_PASSWORD_ARG="$DB_PASSWORD" .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
