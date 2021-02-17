@@ -46,7 +46,7 @@ jobs:
           DB_USER: ${{ env.DB_USER }}
           DB_PASSWORD: ${{ env.DB_PASSWORD }}
         run: |
-          docker build -t "mastertechhn/med-api:$IMAGE_TAG" --build-arg APP_HOST_ARG = $APP_HOST
-            --build-arg APP_PORT_ARG = $APP_PORT --build-arg DB_HOST_ARG = $DB_HOST 
-            --build-arg DB_PORT_ARG = $DB_PORT --build-arg DB_NAME_ARG = ${{ env.DB_NAME }} 
-            --build-arg DB_USER_ARG = $DB_USER  --build-arg DB_PASSWORD_ARG = $DB_PASSWORD .
+          docker build -t "mastertechhn/med-api:$IMAGE_TAG" --build-arg APP_HOST_ARG="$APP_HOST"
+            --build-arg APP_PORT_ARG="$APP_PORT" --build-arg DB_HOST_ARG="$DB_HOST" 
+            --build-arg DB_PORT_ARG="$DB_PORT" --build-arg DB_NAME_ARG="$DB_NAME" 
+            --build-arg DB_USER_ARG="$DB_USER"  --build-arg DB_PASSWORD_ARG="$DB_PASSWORD" .
