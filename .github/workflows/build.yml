@@ -39,7 +39,7 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t "mastertechhn/med-api:$IMAGE_TAG" --build-arg APP_HOST_ARG = ${{ env.APP_HOST }}
-            --build-arg APP_PORT_ARG = ${{ env.APP_PORT }} --build-arg DB_HOST_ARG = ${{ env.DB_HOST }} 
-            --build-arg DB_PORT_ARG = ${{ env.DB_PORT }} --build-arg DB_NAME_ARG = ${{ env.DB_NAME }} 
-            --build-arg DB_USER_ARG = ${{ env.DB_USER }}  --build-arg DB_PASSWORD_ARG = ${{ env.DB_PASSWORD }} .
+          docker build -t "mastertechhn/med-api:$IMAGE_TAG" -e APP_HOST = ${{ env.APP_HOST }} 
+            -e APP_PORT = ${{ env.APP_PORT }} -e DB_HOST = ${{ env.DB_HOST }} 
+            -e DB_PORT = ${{ env.DB_PORT }} -e DB_NAME = ${{ env.DB_NAME }} 
+            -e DB_USER = ${{ env.DB_USER }} -e DB_PASSWORD = ${{ env.DB_PASSWORD }} .
