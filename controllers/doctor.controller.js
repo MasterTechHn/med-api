@@ -7,7 +7,7 @@ async function getDoctors(req, res) {
     console.log('a doctors collection has been dispatch..');
     return res.status(200).send({ 
       success: true, 
-      count: data.length,
+      count: doctors.length,
       data: doctors
     });
   } catch (err) {
