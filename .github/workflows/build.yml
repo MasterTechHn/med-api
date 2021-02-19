@@ -1,6 +1,8 @@
 name: Med-Api CI
 
 on:
+  push: 
+    branches: [ dev ]
   pull_request:
     branches: [ main ]
 
@@ -39,4 +41,11 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t "mastertechhn/med-api:$IMAGE_TAG" .
+          docker build --build-arg APP_HOST=${{env.APP_HOST}} \
+           --build-arg APP_PORT=${{env.APP_PORT}} \
+           --build-arg DB_HOST=${{env.DB_HOST}} \
+           --build-arg DB_PORT=${{env.DB_PORT}} \
+           --build-arg DB_NAME=${{env.DB_NAME}} \
+           --build-arg DB_USER=${{env.DB_USER}} \
+           --build-arg DB_PASSWORD=${{env.DB_PASSWORD}} \
+           -t "mastertechhn/med-api:$IMAGE_TAG" .
