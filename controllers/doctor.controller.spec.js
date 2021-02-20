@@ -32,12 +32,12 @@ describe('Doctor Controller test ..', () => {
     expect(resp.body.data).toHaveProperty('speciality');
     expect(resp.body.data).toHaveProperty('experience');
     expect(resp.status).toBe(200);
-  });
+  })
   
   it('GET /getDoctors should response with an array of doctors.', async() =>{
     const resp = await request(app).get('/v0.1/medapi/doctor/getDoctors');
-    
-    expect(resp.body.data).toHaveLength(1);
+
+    expect(resp.body.success).toBeTruthy();
     expect(resp.body.data[0]).toHaveProperty('_id');
     expect(resp.body.data[0]).toHaveProperty('name');
     expect(resp.body.data[0]).toHaveProperty('password');
@@ -47,5 +47,5 @@ describe('Doctor Controller test ..', () => {
     expect(resp.body.data[0]).toHaveProperty('speciality');
     expect(resp.body.data[0]).toHaveProperty('experience');
     expect(resp.status).toBe(200);
-  });
+  })
 });

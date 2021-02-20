@@ -32,8 +32,7 @@ describe('Postulant Controller test ..', () =>{
 
   it('GET /apply should response with an array of postulants.', async() => {
     const resp = await request (app).get('/v0.1/medapi/apply');
-
-    expect(resp.body.data).toHaveLength(1);
+    expect(resp.body.success).toBeTruthy();
     expect(resp.body.data[0]).toHaveProperty('_id');
     expect(resp.body.data[0]).toHaveProperty('name');
     expect(resp.body.data[0]).toHaveProperty('email');
