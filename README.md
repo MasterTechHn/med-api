@@ -3,13 +3,16 @@
 ![Med-Api CD](https://github.com/MasterTechHn/med-api/workflows/Med-Api%20CD/badge.svg)
 
 # med-api
-web rest api to take over doctors backend
+Web REST API with Auth middleware for Doctors' requests in Model-Routes-Controller structure based on an ODM database. 
 
 ## Development Resources
 * Dennis Anariba
 * Grawille Zacapa
 
-## Stack
+## Main Stack
+#### NodeJS - Express - Mongo
+---
+
 |  | Development | Production |
 |----------|------------ |------------ |
 | Windows               |  ✔  |   |
@@ -34,7 +37,7 @@ git remote add origin https://github.com/MasterTechHn/med-api.git
 git pull origin main
 ```
 
-### 2.Bundle Install
+### 2.Local bundle Install 
 should check your node version with `node -v`
 ```
 npm install bcrypt body-parser dotenv express express-session mongoose passport passport-local morgan cors --save
@@ -49,3 +52,20 @@ npm install --save-dev nodemon jest supertest
 
 ### 4.Run
 should use `npm run start-dev` to trigger nodemon
+
+## Running with Docker
+You must have installed Docker Desktop deamond on your system.
+```
+//root directory
+docker compose up
+```
+---
+```
+//stop services
+docker compose stop
+```
+---
+```
+//stop virtualization
+docker compose down
+```
